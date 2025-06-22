@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
-    // Load tasks from Local Storage on page load
+    // Load tasks from Local Storage
     loadTasks();
 
     function addTask(taskText = null, save = true) {
-        // Explicitly use taskInput.value.trim() if taskText is not passed
+        // ✅ Ensure .trim() is present for checks
         if (taskText === null) {
-            taskText = taskInput.value.trim(); // ✅ Required line
+            taskText = taskInput.value.trim();
         }
 
         if (taskText === "") {
@@ -17,12 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Create task list item
         const listItem = document.createElement('li');
         listItem.textContent = taskText;
 
+        // Create remove button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
+
+        // ✅ Ensure classList.add is used
         removeBtn.classList.add('remove-btn');
 
-        removeBtn.onclick = () => {
-            taskList.removeChild(listItem);
+        // Remove logic
+        removeBtn.oncli
